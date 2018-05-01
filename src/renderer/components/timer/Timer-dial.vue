@@ -18,8 +18,7 @@
     >
       <path 
         fill="none"
-        stroke-width="10" 
-        stroke-linecap="round" 
+        stroke-width="3"
         stroke-miterlimit="10"
         d="M115,5c60.8,0,110,49.2,110,110s-49.2,110-110,110S5,175.8,5,115S54.2,5,115,5"
       />
@@ -39,8 +38,7 @@
     >
       <path 
         fill="none" 
-        stroke-width="2" 
-        stroke-linecap="round" 
+        stroke-width="1"
         stroke-miterlimit="10" 
         d="M115,5c60.8,0,110,49.2,110,110s-49.2,110-110,110S5,175.8,5,115S54.2,5,115,5"
       />
@@ -147,19 +145,21 @@ export default {
 .Dial-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 35px;
+  margin-top: 55px;
   position: relative;
 }
 
 .Dial-label {
   letter-spacing: .1em;
   position: absolute;
-  top: 66%;
+  top: calc(50% + 25px);
+  font-size: 9px;
+  color: lighten($colorBlueGrey, 20%);
   text-transform: uppercase;
 }
 
 .Dial-bg {
-  stroke: $colorBlueGrey;
+  stroke: darken($colorBlueGrey, 10%);
 }
 
 .Dial-fill {

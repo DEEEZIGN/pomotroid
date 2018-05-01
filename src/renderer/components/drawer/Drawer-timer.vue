@@ -201,26 +201,31 @@ export default {
 .Setting-wrapper {
   margin: 10px 0;
   text-align: center;
+  width: 100%;
+  float: left;
 }
 
 .Setting-title {
   color: $colorBlueGrey;
   font-size: 14px;
   letter-spacing: .05em;
-  margin-bottom: 8px;
+  line-height: 26px;
+  float: left;
 }
 
 .Setting-value {
-  background-color: $colorNavy;
-  border-radius: 4px;
+  background-color: darken($colorNavy, 2%);
   display: inline-block;
   font-family: 'RobotoMono', monospace;
   font-size: 12px;
-  padding: 2px 6px;
+  padding: 5px 10px;
+  float: right;
 }
 
 .Slider-wrapper {
   position: relative;
+  float: left;
+  width: 100%;
 }
 
 .Slider {
@@ -231,17 +236,17 @@ export default {
     outline: 0;
   }
   &::-webkit-slider-runnable-track {
-    background-color: $colorNavy;
+    background-color: darken($colorNavy, 5%);
     width: 100%;
-    height: 3px;
+    height: 1px;
   }
   &::-webkit-slider-thumb {
     background-color: $colorBlueGrey;
-    border: 2px solid $colorBlueGrey;
+    border: 0px;
     border-radius: 100%;
-    margin-top: -7px;
-    width: 15px;
-    height: 15px;
+    margin-top: -5px;
+    width: 10px;
+    height: 10px;
     -webkit-appearance: none;
     -webkit-app-region: no-drag;
   }
@@ -250,7 +255,6 @@ export default {
 .Slider--blue {
   &::-webkit-slider-thumb {
     background-color: $colorBlue;
-    border: 2px solid $colorBlue;
     -webkit-app-region: no-drag;
   }
 }
@@ -258,7 +262,6 @@ export default {
 .Slider--green {
   &::-webkit-slider-thumb {
     background-color: $colorGreen;
-    border: 2px solid $colorGreen;
     -webkit-app-region: no-drag;
   }
 }
@@ -266,15 +269,14 @@ export default {
 .Slider--red {
   &::-webkit-slider-thumb {
     background-color: $colorRed;
-    border: 2px solid $colorRed;
     -webkit-app-region: no-drag;
   }
 }
 
 .Slider-bar {
   position: absolute;
-  top: calc(50% + 3px);
-  height: 3px;
+  top: calc(50% + 5px);
+  height: 1px;
 }
 
 .Slider-bar--blue {

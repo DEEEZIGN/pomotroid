@@ -5,6 +5,8 @@ const localStore = createLocalStore()
 const state = {
   round: 1,
   workRounds: parseInt(localStore.get('workRounds')),
+  rate: parseInt(localStore.get('rate')),
+  history: localStore.get('history') ? JSON.parse(localStore.get('history')) : [],
   timeLongBreak: parseInt(localStore.get('timeLongBreak')),
   timeShortBreak: parseInt(localStore.get('timeShortBreak')),
   timeWork: parseInt(localStore.get('timeWork')),
@@ -18,6 +20,12 @@ const getters = {
   },
   workRounds () {
     return state.workRounds
+  },
+  rate () {
+    return state.rate
+  },
+  history () {
+    return state.history
   },
   timeLongBreak () {
     return state.timeLongBreak
@@ -72,6 +80,18 @@ const mutations = {
     state.workRounds = payload
   },
 
+  SET_RATE (state, payload) {
+    state.rate = payload
+  },
+
+  SET_HISTORY (state, payload) {
+    state.history.push(payload)
+  },
+
+  CLEAR_HISTORY (state, payload) {
+    state.history = []
+  },
+
   TOGGLE_MUTE (state) {
     state.isMuted = !state.isMuted
   }
@@ -118,6 +138,21 @@ const actions = {
   setWorkRounds ({ commit }, payload) {
     commit('SET_WORK_ROUNDS', payload)
     localStore.set('workRounds', payload)
+  },
+
+  setRate ({ commit }, payload) {
+    commit('SET_RATE', payload)
+    localStore.set('rate', payload)
+  },
+
+  setHistory ({ commit }, payload) {
+    commit('SET_HISTORY', payload)
+    localStore.set('history', JSON.stringify(state.history))
+  },
+
+  clearHistory ({ commit }, payload) {
+    commit('CLEAR_HISTORY', payload)
+    localStore.set('history', JSON.stringify(state.history))
   },
 
   toggleMute ({ commit }) {

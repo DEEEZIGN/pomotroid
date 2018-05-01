@@ -20,18 +20,8 @@ Pomotroid is in its early stages, so feedback and contributions are welcome and 
 * Customize times and number of rounds.
 * Charming timer alert sounds (optional).
 * Desktop notifications (optional).
-
-## Roadmap
-
-:memo: Future plans for enhancements and development:
-
-* Minimize to tray
-
-## Download
-
-Pomotroid is available for Windows 32/64, Mac OSX and Debian/Ubuntu flavored Linux.
-
-Download the latest version from the [releases](https://github.com/Splode/pomotroid/releases) page.
+* Hourly rate.
+* History.
 
 ## Technical
 

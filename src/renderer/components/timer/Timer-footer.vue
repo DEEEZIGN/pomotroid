@@ -1,33 +1,20 @@
 <template>
   <section class="Container Footer">
     <div class="Round-wrapper">
-      <p>{{ round + '/' + workRounds }}</p>
+      <p class="TextButton">{{ round + '/' + workRounds }}</p>
       <p class="TextButton" @click="callForReset">Reset</p>
+      <p class="TextButton" @click="endWork">End work day</p>
     </div>
     <div class="Icon-group" style="position: absolute; right: 0;">
       <!-- skip -->
-      <div class="Icon-wrapper Icon-wrapper--double--left" @click="skipRound">
-        <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-    x="0px" y="0px" viewBox="0 0 8 12" xml:space="preserve" height="15px" class="Icon--skip">
-          <polygon fill="#858C99" points="0,0 0,12 6.1,5.9"/>
-          <rect x="6.9" y="0" fill="#858C99" width="1.1" height="12"/>
-        </svg>
+      <div @click="skipRound">
+        <svg class="buttons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="315.889 375.665 14 14" width="14" height="14"><path d=" M 329.889 375.665 L 329.889 389.665 L 327.889 389.665 L 327.889 383.571 L 315.889 389.665 L 315.889 375.665 L 327.889 381.759 L 327.889 375.665 L 329.889 375.665 Z " fill="rgb(0,0,0)"></path></svg>
       </div>
       <!-- mute -->
-      <div class="Icon-wrapper Icon-wrapper--double--right" @click="toggleMute">
+      <div @click="toggleMute">
         <transition name="fade" mode="out-in">
-          <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-      x="0px" y="0px" viewBox="0 0 12.3 12" xml:space="preserve" height="15px" class="Icon--mute" v-if="!isMuted">
-            <path fill="#858C99" d="M0,3.9v4.1h2.7l3.4,3.4V0.5L2.7,3.9H0z M9.2,6c0-1.2-0.7-2.3-1.7-2.8v5.5C8.5,8.3,9.2,7.2,9.2,6z M7.5,0v1.4
-      c2,0.6,3.4,2.4,3.4,4.6s-1.4,4-3.4,4.6V12c2.7-0.6,4.8-3.1,4.8-6S10.3,0.6,7.5,0z"/>
-          </svg>
-          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-    viewBox="-467 269 24 24" style="enable-background:new -467 269 24 24;" xml:space="preserve" height="20px" class="Icon--muted" v-else>
-            <path fill="#858C99" d="M-450.5,281c0-1.8-1-3.3-2.5-4v2.2l2.5,2.5C-450.5,281.4-450.5,281.2-450.5,281z M-448,281c0,0.9-0.2,1.8-0.5,2.6l1.5,1.5
-              c0.7-1.2,1-2.6,1-4.1c0-4.3-3-7.9-7-8.8v2.1C-450.1,275.1-448,277.8-448,281z M-462.7,272l-1.3,1.3l4.7,4.7h-4.7v6h4l5,5v-6.7
-              l4.3,4.3c-0.7,0.5-1.4,0.9-2.3,1.2v2.1c1.4-0.3,2.6-1,3.7-1.8l2,2l1.3-1.3l-9-9L-462.7,272z M-455,273l-2.1,2.1l2.1,2.1V273z"/>
-            <path fill="none" d="M-467,269h24v24h-24V269z"/>
-          </svg>
+          <svg class="buttons" v-if="!isMuted" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="300.453 441.537 15 18" width="15" height="18"><path d=" M 310.453 441.537 L 304.453 447.537 L 300.453 447.537 L 300.453 453.537 L 304.453 453.537 L 310.453 459.537 L 310.453 441.537 Z  M 312.453 446.631 L 312.453 454.35 C 314.221 453.934 315.466 452.352 315.453 450.537 C 315.453 448.639 314.153 447.131 312.453 446.631 Z " fill="rgb(0,0,0)"/></svg>
+          <svg class="buttons" v-else xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="290.622 415.188 19.718 18" width="19.718" height="18"><path d=" M 300.622 415.188 L 294.622 421.188 L 290.622 421.188 L 290.622 427.188 L 294.622 427.188 L 300.622 433.188 L 300.622 415.188 Z  M 303.341 419.469 L 301.902 420.908 L 304.715 423.689 L 301.902 426.47 L 303.34 427.908 L 306.121 425.095 L 308.902 427.908 L 310.34 426.47 L 307.527 423.689 L 310.34 420.908 L 308.902 419.468 L 306.122 422.282 L 303.341 419.469 Z " fill="rgb(0,0,0)"/></svg>
         </transition>
       </div>
     </div>
@@ -36,6 +23,7 @@
 
 <script>
 import { EventBus } from '@/utils/event-bus'
+import dateFormat from 'dateformat'
 
 export default {
   computed: {
@@ -46,6 +34,10 @@ export default {
 
     isMuted () {
       return this.$store.getters.isMuted
+    },
+
+    timeWork () {
+      return this.$store.getters.timeWork
     },
 
     round () {
@@ -62,6 +54,21 @@ export default {
       EventBus.$emit('call-timer-reset')
     },
 
+    endWork () {
+      let currentTime = parseFloat((this.$parent.timer.time / 60).toFixed(2))
+      let workTimeMinutes = (this.timeWork * (this.round - 1)) + currentTime
+      let workTime = parseFloat((workTimeMinutes / 60).toFixed(2))
+      let total = parseFloat((this.$store.getters.rate * workTime).toFixed(2))
+      if (total) {
+        this.$store.dispatch('setHistory', {
+          date: dateFormat(new Date(), 'yyyy-mm-dd'),
+          worktime: workTime,
+          total: total
+        })
+        this.callForReset()
+      }
+    },
+
     skipRound () {
       EventBus.$emit('timer-completed')
     },
@@ -74,10 +81,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .Icon-group {
+    padding-top: 15px;
+    padding-right: 15px;
+  }
+  .buttons {
+    height: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    path {
+      fill: darken($colorBlueGrey, 10%);
+      &:hover {
+        fill: $colorRed;
+      }
+    }
+  }
 .Footer {
   align-items: center;
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .Icon--mute {
@@ -113,5 +140,11 @@ export default {
 
 .Round-wrapper {
   text-align: center;
+  p {
+    float: left;
+    &.TextButton {
+      margin-right: 15px;
+    }
+  }
 }
 </style>

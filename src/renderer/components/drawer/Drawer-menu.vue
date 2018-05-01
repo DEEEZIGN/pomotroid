@@ -25,6 +25,13 @@
         </svg>
       </div>
     </div>
+    <div class="Drawer-menu-wrapper" @click="setDrawerComponent('appDrawerHistory')" :class="{ 'is-active': currentDrawer === 'appDrawerHistory' }">
+      <div class="Drawer-menu-button">
+        <div class="Icon-wrapper">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGCSURBVDhPjZTNSgJhGIXNoMJNlGBSKkHSBbQJynZCUNt2Re2CoKIWSUVt6hqiFhm1lWpRIfSjQZsuqL3T836dGZlGBw88zJzzne91mB8Tvlqt1iLkZZ3wU7AA85BTHC/P8w6hBMNsOoMGXMARnMI1vMM+nQFti8oGUarAFywrDolOkrVVaMK04rA06AcqnG9yLFrOcQVfciWJbAJsmOuERHkSyj6UMpZz3ILIFZLl4Y1uUpELtwmysiF1G2Qi34V1Z2wipsmxzwX/FDeIPSnWnn1TwFw500Fxg0ys1ZnRb4NKmGPlEbF2CQeyEbFWZUbWTubgRHlI5LPwTbGsKCLWbulkrJyDqvJAGmL3bkRRR9GxJ/d3fzEfmOAxcj5E9tLDkDSdmqwL9mBN1in4lRixxz6l9oPADIK9qb19mIjuDDzItkVYhAZXUlDUVRryCWlFYbFgfxv2he8wMKU4kN0z1s7hEUYVdxZle9M34AnqcAN38Ar3sKRq79LQcRhT1EWJxC/i76rl9LkOUwAAAABJRU5ErkJggg==">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -52,25 +59,26 @@ export default {
 
 <style lang="scss" scoped>
 .Drawer-menu {
-  background-color: $colorNavy;
+  background-color: darken($colorNavy, 3%);
   display: flex;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 36px;
+  height: 50px;
 }
 
 .Drawer-menu-wrapper {
   align-items: center;
   display: flex;
   flex: 1 1 auto;
+  cursor: pointer;
   justify-content: center;
   position: relative;
   transition: $transitionDefault;
   height: 100%;
   &:hover {
-    background-color: $colorLightNavy;
+    background-color: darken($colorNavy, 5%);
   }
   // &:hover:not(.is-active) {
   //   background-color: $colorLightNavy;
@@ -81,14 +89,14 @@ export default {
     margin: 0 auto;
     position: absolute;
     right: 0;
-    bottom: 0;
+    top: 0;
     left: 0;
     transition: $transitionSnappy;
     width: 0;
-    height: 2px;
+    height: 1px;
   }
   &.is-active::after {
-    width: 33%;
+    width: 100%;
   }
 }
 

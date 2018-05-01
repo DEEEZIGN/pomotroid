@@ -11,6 +11,7 @@
 import appDrawerMenu from '@/components/drawer/Drawer-menu'
 import appDrawerSettings from '@/components/drawer/Drawer-settings'
 import appDrawerTimer from '@/components/drawer/Drawer-timer'
+import appDrawerHistory from '@/components/drawer/Drawer-history'
 
 export default {
   name: 'Drawer',
@@ -18,6 +19,7 @@ export default {
   components: {
     appDrawerMenu,
     appDrawerSettings,
+    appDrawerHistory,
     appDrawerTimer
   },
 
@@ -31,10 +33,10 @@ export default {
 
 <style lang="scss" scoped>
 .Drawer {
-  background-color: $colorLightNavy;
+  background-color: $colorNavy;
   position: relative;
   width: 100%;
-  height: calc(100% - 68px);
+  height: calc(100% - 50px);
   z-index: 1;
   -webkit-app-region: no-drag;
 }
